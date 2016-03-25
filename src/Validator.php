@@ -45,32 +45,7 @@ class Validator
         $className = $this->factoryMap[$name];
         /* @var $object ValidatorInterface */
         $object = new $className;
-        $result = $object->validate($this->value);
+        $result = $object->validate($this->value, $params);
         return $result;
-    }
-
-    public function string()
-    {
-        if ( is_string($this->value))
-        {
-            $this->valid = true;
-        } else {
-            $this->messages[]='value is not string';
-            $this->valid = false;
-        }
-        return $this;
-    }
-
-    public function length($min, $max)
-    {
-        $length = strlen($this->value);
-        if ($length >= $min && $length <= $max)
-        {
-            $this->valid = true;
-        } else {
-            $this->messages[]='invalid min or max';
-            $this->valid = false;
-        }
-        return $this;
     }
 }

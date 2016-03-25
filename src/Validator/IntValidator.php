@@ -5,7 +5,7 @@ namespace EasyValidator\Validator;
 
 class IntValidator extends AbstractValidator implements ValidatorInterface
 {
-    public function validate($value)
+    public function validate($value, $params)
     {
         if (is_numeric($value))
         {

@@ -4,11 +4,18 @@
 namespace EasyValidator\Validator;
 
 
-class LengthValidator implements ValidatorInterface
+class LengthValidator extends AbstractValidator implements ValidatorInterface
 {
-    public function validate($value)
+    public function validate($value, $params)
     {
-        // TODO: Implement validate() method.
+        $length = strlen($value);
+        if ($length >= $params[0] && $length <= $params[1])
+        {
+            return true;
+        } else {
+            $this->addMessage('Invalid min or max.');
+            return false;
+        }
     }
 
 }

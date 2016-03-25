@@ -51,8 +51,9 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testString($value, $expected)
     {
-        $result = Validator::validate($value)->string();
-        $this->assertEquals($result->getValid(), $expected);
+        $object = Validator::validate($value);
+        $result = $object->string();
+        $this->assertEquals($result, $expected);
     }
 
     /**
@@ -60,8 +61,9 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testLength($value, $min, $max, $expected)
     {
-        $result = Validator::validate($value)->length($min, $max);
-        $this->assertEquals($result->getValid(), $expected);
+        $object = Validator::validate($value);
+        $result = $object->length($min, $max);
+        $this->assertEquals($result, $expected);
     }
 
 //    public function testNumberErrorMessage()
