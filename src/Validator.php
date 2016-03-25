@@ -3,8 +3,19 @@
 namespace EasyValidator;
 
 
+use EasyValidator\Validator\IntValidator;
+use EasyValidator\Validator\LengthValidator;
+use EasyValidator\Validator\StringValidator;
+use EasyValidator\Validator\ValidatorInterface;
+
 class Validator
 {
+    private $factoryMap = [
+        'string' => StringValidator::class,
+        'number' => IntValidator::class,
+        'length' => LengthValidator::class
+    ];
+
     private $value;
 
     private $messages = [];
@@ -29,16 +40,13 @@ class Validator
 
     }
 
-    public function number()
+    public function __call($name, $params)
     {
-        if (is_numeric($this->value))
-        {
-            $this->valid = true;
-        } else {
-            $this->messages[]='The value is\'t number.';
-            $this->valid = false;
-        }
-        return $this;
+        $className = $this->factoryMap[$name];
+        /* @var $object ValidatorInterface */
+        $object = new $className;
+        $result = $object->validate($this->value);
+        return $result;
     }
 
     public function string()

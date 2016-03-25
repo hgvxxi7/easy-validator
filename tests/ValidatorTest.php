@@ -41,8 +41,9 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testNumber($value, $expected)
     {
-        $object = Validator::validate($value)->number();
-        $this->assertEquals($object->getValid(), $expected);
+        $object = Validator::validate($value);
+        $result = $object->number();
+        $this->assertEquals($result, $expected);
     }
 
     /**
@@ -63,12 +64,12 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($result->getValid(), $expected);
     }
 
-    public function testNumberErrorMessage()
-    {
-        $object = Validator::validate('tyui')->number();
-        $messages = $object->getMessages();
-        $this->assertTrue($messages[0] == 'The value is\'t number.');
-    }
+//    public function testNumberErrorMessage()
+//    {
+//        $object = Validator::validate('tyui')->number();
+//        $messages = $object->getMessages();
+//        $this->assertTrue($messages[0] == 'The value is\'t number.');
+//    }
 
 //    public function testOfTwoValidators()
 //    {
