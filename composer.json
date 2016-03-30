@@ -1,0 +1,22 @@
+{
+  "config": {
+    "bin-dir": "bin/"
+  },
+  "name": "hgvxxi7/easy-validator",
+  "description": "",
+  "license": "MIT",
+  "keywords": [
+    "validator"
+  ],
+  "require": {
+    "php": ">=5.5"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.8.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "EasyValidator\\": "src/"
+    }
+  }
+}
